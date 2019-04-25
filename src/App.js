@@ -1,6 +1,19 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { withAuthenticator } from 'aws-amplify-react'
+//import { Authenticator, Greetings } from 'aws-amplify-react';
+
+import { Auth } from 'aws-amplify'
+
+/* 
+<Authenticator hideDefault={true}>
+<Greetings
+    inGreeting={() => 'Welcome'}
+    outGreeting="Please sign in..."
+/>
+</Authenticator> 
+*/
 
 class App extends Component {
   render() {
@@ -23,6 +36,14 @@ class App extends Component {
       </div>
     );
   }
+
+  async componentDidMount() {
+    debugger
+    const user = await Auth.currentAuthenticatedUser()
+    console.log('user info:', user.signInUserSession.idToken.payload)
+    console.log('username:', user.username)
+  }
 }
 
-export default App;
+export default withAuthenticator(App, { includeGreetings: true })
+//export default App;
