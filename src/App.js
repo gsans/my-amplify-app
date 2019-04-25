@@ -30,7 +30,7 @@ class App extends Component {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Learn React
+            Learn React and Amplify
           </a>
         </header>
       </div>
